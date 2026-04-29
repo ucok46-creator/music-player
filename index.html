@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player - Pemutar Musik Modern</title>
+  <!-- Memuat CSS eksternal untuk gaya -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Memuat library jsmediatags untuk membaca metadata lagu (cover, artis, judul) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+</head>
+<body>
+
+  <!-- LAPISAN BACKGROUND DINAMIS -->
+  <div id="bgColor"></div>          <!-- Warna solid fallback -->
+  <div id="bgBlur"></div>           <!-- Gambar cover yang di-blur sebagai wallpaper -->
+  <div id="bgOverlay"></div>        <!-- Overlay gelap untuk kontras -->
+
+  <!-- FRAME UTAMA (gaya seperti iPhone) -->
+  <div class="phone">
+    <!-- Notch tiruan (bagian atas layar) -->
+    <div class="notch"></div>
+    <!-- Header mini (simulasi status bar) -->
+    <div class="mini-header">
+      <span>iPhone</span>
+      <span>Music</span>
+    </div>
+
+    <!-- AREA ALBUM ART / COVER LAGU -->
+    <div class="album-art" id="albumArt">
+      <!-- Emoji ditampilkan jika tidak ada cover gambar -->
+      <div class="album-emoji" id="albumEmoji">🎵</div>
+    </div>
+
+    <!-- INFO LAGU & TOMBOL LIKE -->
+    <div class="song-info">
+      <div class="song-text">
+        <div class="title" id="songTitle">Pilih lagu dulu</div>
+        <div class="artist" id="songArtist">— tambahkan musik lo —</div>
+      </div>
+      <button class="heart-btn" id="heartBtn">♡</button>  <!-- Tombol favorit -->
+    </div>
+
+    <!-- PROGRESS BAR (waktu & durasi) -->
+    <div class="progress-container">
+      <div class="progress-bar-bg" id="progressBg">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="time-labels">
+        <span id="currentTime">0:00</span>
+        <span id="totalTime">0:00</span>
+      </div>
+    </div>
+
+    <!-- KONTROL PEMUTAR (play, next, prev, shuffle, repeat) -->
+    <div class="controls">
+      <button class="ctrl-btn" id="prevBtn">⏮</button>       <!-- Sebelumnya -->
+      <button class="ctrl-btn" id="shuffleBtn">🔀</button>   <!-- Acak -->
+      <button class="ctrl-btn play-btn" id="playBtn">▶</button>  <!-- Play/Pause -->
+      <button class="ctrl-btn" id="repeatBtn">🔁</button>    <!-- Ulang -->
+      <button class="ctrl-btn" id="nextBtn">⏭</button>       <!-- Selanjutnya -->
+    </div>
+
+    <!-- KONTROL VOLUME (slider) -->
+    <div class="volume-row">
+      <span class="vol-icon">🔈</span>
+      <input type="range" class="vol-slider" id="volSlider" min="0" max="1" step="0.01" value="0.8">
+      <span class="vol-icon">🔊</span>
+    </div>
+
+    <!-- PLAYLIST (daftar lagu) + tombol tambah manual -->
+    <div class="playlist">
+      <div class="playlist-title">Playlist</div>
+      <div id="trackList"><div class="empty-msg">Loading lagu...</div></div>
+      <!-- Tombol upload file lokal (MP3/WAV) -->
+    </div>
+  </div>
+
+  <!-- ELEMEN AUDIO HIDDEN UNTUK PEMUTARAN -->
+  <audio id="audioPlayer"></audio>
+
+  <!-- Memuat JavaScript eksternal -->
+  <script src="script.js"></script>
+</body>
+</html>
